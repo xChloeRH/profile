@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profilseite</title>
+    <title>Profile</title>
     <style>
         body, html {
             margin: 0;
@@ -12,7 +12,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #000;
             overflow: hidden;
             position: relative;
             font-family: Arial, sans-serif;
@@ -20,20 +19,38 @@
         iframe {
             position: absolute;
             top: 0;
+            left: -100;
+            width: 120%;
+            height: 120%;
+            pointer-events: none;
+            z-index: -2;
+        }
+        .background-container {
+            position: absolute;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
             z-index: -1;
         }
         .profile {
             text-align: center;
             color: white;
             z-index: 1;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 20px;
+            padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(94, 94, 94, 0.5);
+            width: 100vw;
+            height: auto;
+        }
+        h1, p, .timer {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 10px 0;
+            transform: rotateY(15deg);
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         }
         img {
             border-radius: 50%;
@@ -46,34 +63,100 @@
         }
         .socials a {
             margin: 0 10px;
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
+            display: inline-block;
         }
-        .socials a:hover {
-            color: #ff4081;
+        .socials img {
+            width: 30px;
+            height: 30px;
+            transition: transform 0.3s;
+        }
+        .socials img:hover {
+            transform: scale(1.2);
+        }
+        .music-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0px;
+            border: 2px solid rgba(255, 255, 255, 0.11);
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .music-container img {
+            width: 50px;
+            height: 50px;
+            margin: 10px;
+        }
+        .music-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .music-artist {
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
     <iframe 
-        src="https://www.youtube.com/embed/zBPOjdWtPBc?autoplay=1&loop=1&playlist=zBPOjdWtPBc&mute=1" 
-        frameborder="0" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen>
+        src="https://giphy.com/embed/IgFUksdbMpC9bippWA" 
+        frameBorder="0" 
+        class="giphy-embed" 
+        allowFullScreen>
     </iframe>
+
+    <div class="background-container"></div>
 
     <div class="profile">
         <img src="pfp.png" alt="Profilbild">
         <h1>Chloe</h1>
-        <p>17 Jahre alt (06.11.2006)</p>
+        <p>17yo - Italiana</p>
+        
+        <div class="timer" id="countdown"></div>
+
         <div class="socials">
-            <a href="https://instagram.com/chloerh.dc" target="_blank">Instagram</a>
-            <a href="https://tiktok.com/@dkb.c" target="_blank">TikTok</a>
-            <a href="https://www.youtube.com/@xChloe" target="_blank">YouTube</a>
+            <a href="https://instagram.com/chloerh.dc" target="_blank">
+                <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Instagram_colored_svg_1-512.png" alt="Instagram">
+            </a>
+            <a href="https://tiktok.com/@dkb.c" target="_blank">
+                <img src="https://cdn4.iconfinder.com/data/icons/social-media-flat-7/64/Social-media_Tiktok-512.png" alt="TikTok">
+            </a>
+            <a href="https://www.youtube.com/@xChloe" target="_blank">
+                <img src="https://cdn2.iconfinder.com/data/icons/social-media-2285/512/1_Youtube_colored_svg-512.png" alt="YouTube">
+            </a>
+        </div>
+
+        <div class="music-container">
+            <img src="https://i.scdn.co/image/ab67616d00001e0226f7f19c7f0381e56156c94a" alt="Musikbild">
+            <div>
+                <div class="music-title">Everything I Am</div>
+                <div class="music-artist">Kanye West, DJ Premier</div>
+            </div>
         </div>
     </div>
+
+    <audio id="background-music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Dein Browser unterstützt den Audio-Tag nicht.
+    </audio>
+
+    <script>
+        window.onload = function() {
+            const audio = document.getElementById('background-music');
+            audio.volume = 0.15;
+            audio.play();
+        };
+
+        function updateCountdown() {
+            const birthday = new Date('2006-11-06T00:00:00');
+            const now = new Date();
+            const diff = birthday - now;
+        }
+    </script>
 
 </body>
 </html>
